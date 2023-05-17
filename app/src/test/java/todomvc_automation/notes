@@ -1,12 +1,39 @@
-Backbone.js x
+Backbone.js
+KnockoutJS
+Dojo
+Knockback.js
+CanJS
+Mithril
+Vue.js
+Marionette.js
+Kotlin + React
+Spine
+Dart
+Closure
+Elm
+AngularDart
+Reagent
+
+
 AngularJS - different page format
 Ember.js- different page format
-KnockoutJS x
-Dojo x
-Knockback.js x
-CanJS x
 Polymer - different page format
 React - different page format
-Mithril x
-Vue.js x
-Marionette.js x
+GWT- different page format
+
+accent
+
+
+        frameworkPageSelect.inputIntoToDoField("á");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.inputIntoToDoField("ú");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.inputIntoToDoField("ę");
+        frameworkPageSelect.enterInputTodo();
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("á","ú","ę");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
