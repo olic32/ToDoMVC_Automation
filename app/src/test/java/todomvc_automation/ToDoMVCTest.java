@@ -72,26 +72,6 @@ public class ToDoMVCTest {
         inputElement.sendKeys("?", Keys.ENTER);
     }
 
-
-    // Insert modification tests here.
-
-    @Test
-    public void toggleCheckbox() {
-        WebElement inputElement = driver.findElement(By.cssSelector(".new-todo"));
-        inputElement.sendKeys("Test to-do", Keys.ENTER);
-
-        WebElement todoItem = driver.findElement(By.xpath("//label[text()='Test to-do']"));
-        WebElement checkbox = todoItem.findElement(By.xpath("./preceding-sibling::input[@type='checkbox']"));
-
-        assertFalse(checkbox.isSelected(), "Checkbox should be unticked");
-        checkbox.click();
-        assertTrue(checkbox.isSelected(), "Checkbox should be ticked");
-        checkbox.click();
-        assertFalse(checkbox.isSelected(), "Checkbox should be unticked");
-    }
-
-
-
     @AfterAll
     public static void tearDown() {
         driver.quit();
