@@ -1,7 +1,10 @@
 package todomvc_automation;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class ToDoPOM {
@@ -49,10 +52,49 @@ public class ToDoPOM {
         Actions act = new Actions(driver);
         act.doubleClick(topEntry).perform();
         driver.switchTo().activeElement().sendKeys(newText, Keys.ENTER);
-//        WebElement modifiedEntry = driver.findElement(By.className("edit"));
-//        modifiedEntry.sendKeys(newText);
+
+    }
 
 
+    public void doubleClickTopEntryModifyEscape(String newText) {
+        WebElement toDoList = driver.findElement(By.className("todo-list"));
+        List<WebElement> allTodos = driver.findElements(By.className("view"));
+        WebElement topEntry = allTodos.get(0);
+        Actions act = new Actions(driver);
+        act.doubleClick(topEntry).perform();
+        driver.switchTo().activeElement().sendKeys(newText);
+        driver.switchTo().activeElement().sendKeys(Keys.ESCAPE);
+
+    }
+
+    public void takeScreenshot(String desiredPath) throws IOException {
+        TakesScreenshot screenshot = ((TakesScreenshot)driver);
+        File screenshotFile = screenshot.getScreenshotAs(OutputType.FILE);
+        File targetFile = new File(desiredPath);
+        FileUtils.copyFile(screenshotFile, targetFile);
+    }
+
+    public void toggleCompleteButton() {
+        WebElement toggle = driver.findElement(By.className("toggle"));
+        toggle.click();
+    }
+
+    public Boolean checkIfTicked() {
+        WebElement toggle = driver.findElement(By.className("toggle"));
+        Boolean isChecked = (toggle.getAttribute("checked") != null);
+        return isChecked;
+    }
+
+    public void deleteTopEntry() {
+        WebElement deleteButton = driver.findElement(By.className("destroy"));
+        Actions act = new Actions(driver);
+        act.moveToElement(deleteButton);
+        act.click();
+    }
+
+    public String getNumberStatusBar() {
+        WebElement todoCount = driver.findElement(By.className("todo-count"));
+        return todoCount.getText();
     }
 
 

@@ -6,24 +6,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ToDoMVCChromeTest {
 
     private static ChromeDriver driver;
 
-
-
-//    @BeforeAll
-//    static void launchBrowser() {
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--remote-allow-origins=*");
-//        driver = new ChromeDriver(options);
-//    }
 
     @BeforeEach
     public void launchBrowserSmall() {
@@ -263,6 +255,9 @@ public class ToDoMVCChromeTest {
             assertTrue(expectedTodos.contains(thisOne));
         }
     }
+
+
+
 
 
 //Test for adding a multiple entries to the list, and them all being displayed
@@ -593,6 +588,10 @@ public class ToDoMVCChromeTest {
 
     }
 
+
+
+
+
     //Test for accented characters
 
     @Test
@@ -881,6 +880,10 @@ public class ToDoMVCChromeTest {
         }
     }
 
+
+
+
+
 // Test for modifying existing entries
 
     @Test
@@ -975,6 +978,7 @@ public class ToDoMVCChromeTest {
             assertTrue(expectedTodosModified.contains(thisOneMod));
         }
     }
+    //This test fails as Knockback.JS requires a double click, the one further click in order to edit. report to devs
     @Test
     public void modifyEntryKnockbackJS() {
         HomepagePOM homePageSelect = new HomepagePOM(driver);
@@ -1164,6 +1168,8 @@ public class ToDoMVCChromeTest {
             assertTrue(expectedTodosModified.contains(thisOneMod));
         }
     }
+
+    //this test fails as the modify tool works slightly differently - feedback to devs? it places the cursor at the start
     @Test
     public void modifyEntrySpine() {
         HomepagePOM homePageSelect = new HomepagePOM(driver);
@@ -1257,6 +1263,8 @@ public class ToDoMVCChromeTest {
             assertTrue(expectedTodosModified.contains(thisOneMod));
         }
     }
+
+    //This looks like it works, but doesnt - check with screenshots?
     @Test
     public void modifyEntryElm() {
         HomepagePOM homePageSelect = new HomepagePOM(driver);
@@ -1319,6 +1327,8 @@ public class ToDoMVCChromeTest {
             assertTrue(expectedTodosModified.contains(thisOneMod));
         }
     }
+
+    //this test fails as the modify tool works slightly differently - feedback to devs? it places the cursor at the start
     @Test
     public void modifyEntryReagent() {
         HomepagePOM homePageSelect = new HomepagePOM(driver);
@@ -1355,9 +1365,1338 @@ public class ToDoMVCChromeTest {
 
 
 
+//    Test to see if modifying the input then pressing escape cancels the modification
+
+    @Test
+    public void modifyEntryEscapeBackbone() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Backbone.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it, then press escape before enter
+        frameworkPageSelect.doubleClickTopEntryModifyEscape(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryEscapeKnockoutJS() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("KnockoutJS");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it, then press escape before enter
+        frameworkPageSelect.doubleClickTopEntryModifyEscape(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryEscapeDojo() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Dojo");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it, then press escape before enter
+        frameworkPageSelect.doubleClickTopEntryModifyEscape(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    //This test fails as Knockback.JS requires a double click, the one further click in order to edit. report to devs
+    //Understand this test is for checking cancelling modification
+    //But i cant figure out how to get selenium to double click then click again then send keys!
+    @Test
+    public void modifyEntryEscapeKnockbackJS() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Knockback.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it, then press escape before enter
+
+        frameworkPageSelect.doubleClickTopEntryModifyEscape(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            System.out.println("Here");
+            System.out.println(thisOneMod);
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryEscapeCanJS() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("CanJS");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it, then press escape before enter
+        frameworkPageSelect.doubleClickTopEntryModifyEscape(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryEscapeMithril() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Mithril");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it, then press escape before enter
+        frameworkPageSelect.doubleClickTopEntryModifyEscape(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryEscapeVuejs() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Vue.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it, then press escape before enter
+        frameworkPageSelect.doubleClickTopEntryModifyEscape(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryEscapeMarionettejs() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Marionette.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it, then press escape before enter
+        frameworkPageSelect.doubleClickTopEntryModifyEscape(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryEscapeKotlinReact() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Kotlin + React");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it, then press escape before enter
+        frameworkPageSelect.doubleClickTopEntryModifyEscape(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryEscapeSpine() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Spine");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it, then press escape before enter
+        frameworkPageSelect.doubleClickTopEntryModifyEscape(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryEscapeDart() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Dart");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it, then press escape before enter
+        frameworkPageSelect.doubleClickTopEntryModifyEscape(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryEscapeClosure() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Closure");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it, then press escape before enter
+        frameworkPageSelect.doubleClickTopEntryModifyEscape(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryEscapeElm() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Elm");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it, then press escape before enter
+        frameworkPageSelect.doubleClickTopEntryModifyEscape(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryEscapeAngularDart() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("AngularDart");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it, then press escape before enter
+        frameworkPageSelect.doubleClickTopEntryModifyEscape(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryEscapeReagent() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Reagent");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it, then press escape before enter
+        frameworkPageSelect.doubleClickTopEntryModifyEscape(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+
+
+//These tests check for ticking off a ToDo item. There is a commented out screenshot function for
+    //checking if the line appears. Commented out to save the repo from filling up with pngs
+    @Test
+    public void tickOffTodoBackbone() throws IOException {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Backbone.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        //frameworkPageSelect.takeScreenshot("backbone_tickline.png");
+        assertTrue(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffTodoKnockoutJS() throws IOException {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("KnockoutJS");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        //frameworkPageSelect.takeScreenshot("backbone_tickline.png");
+        assertTrue(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffTodoDojo() throws IOException {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Dojo");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        //frameworkPageSelect.takeScreenshot("backbone_tickline.png");
+        assertTrue(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffTodoKnockbackJS() throws IOException {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Knockback.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        //frameworkPageSelect.takeScreenshot("backbone_tickline.png");
+        assertTrue(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffTodoCanJS() throws IOException {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("CanJS");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        //frameworkPageSelect.takeScreenshot("backbone_tickline.png");
+        assertTrue(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffTodoMithril() throws IOException {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Mithril");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        //frameworkPageSelect.takeScreenshot("backbone_tickline.png");
+        assertTrue(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffTodoVuejs() throws IOException {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Vue.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        //frameworkPageSelect.takeScreenshot("backbone_tickline.png");
+        assertTrue(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffTodoMarionettejs() throws IOException {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Marionette.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        //frameworkPageSelect.takeScreenshot("backbone_tickline.png");
+        assertTrue(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffTodoKotlinReact() throws IOException {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Kotlin + React");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        //frameworkPageSelect.takeScreenshot("backbone_tickline.png");
+        assertTrue(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffTodoSpine() throws IOException {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Spine");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        //frameworkPageSelect.takeScreenshot("backbone_tickline.png");
+        assertTrue(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffTodoDart() throws IOException {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Dart");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        //frameworkPageSelect.takeScreenshot("backbone_tickline.png");
+        assertTrue(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffTodoClosure() throws IOException {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Closure");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        //frameworkPageSelect.takeScreenshot("backbone_tickline.png");
+        assertTrue(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffTodoElm() throws IOException {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Elm");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        //frameworkPageSelect.takeScreenshot("backbone_tickline.png");
+        assertTrue(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffTodoAngularDart() throws IOException {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("AngularDart");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        //frameworkPageSelect.takeScreenshot("backbone_tickline.png");
+        assertTrue(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffTodoReagent() throws IOException {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Reagent");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        //frameworkPageSelect.takeScreenshot("backbone_tickline.png");
+        assertTrue(frameworkPageSelect.checkIfTicked());
+    }
 
 
 
+
+//these tests check that it can be ticked open again
+    @Test
+    public void tickOffThenOnTodoBackbone() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Backbone.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off, then on!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        assertTrue(frameworkPageSelect.checkIfTicked());
+        frameworkPageSelect.toggleCompleteButton();
+        assertFalse(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffThenOnTodoKnockoutJS() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("KnockoutJS");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off, then on!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        assertTrue(frameworkPageSelect.checkIfTicked());
+        frameworkPageSelect.toggleCompleteButton();
+        assertFalse(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffThenOnTodoDojo() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Dojo");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off, then on!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        assertTrue(frameworkPageSelect.checkIfTicked());
+        frameworkPageSelect.toggleCompleteButton();
+        assertFalse(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffThenOnTodoKnockbackJS() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Knockback.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off, then on!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        assertTrue(frameworkPageSelect.checkIfTicked());
+        frameworkPageSelect.toggleCompleteButton();
+        assertFalse(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffThenOnTodoCanJS() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("CanJS");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off, then on!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        assertTrue(frameworkPageSelect.checkIfTicked());
+        frameworkPageSelect.toggleCompleteButton();
+        assertFalse(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffThenOnTodoMithril() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Mithril");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off, then on!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        assertTrue(frameworkPageSelect.checkIfTicked());
+        frameworkPageSelect.toggleCompleteButton();
+        assertFalse(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffThenOnTodoVuejs() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Vue.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off, then on!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        assertTrue(frameworkPageSelect.checkIfTicked());
+        frameworkPageSelect.toggleCompleteButton();
+        assertFalse(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffThenOnTodoMarionettejs() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Marionette.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off, then on!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        assertTrue(frameworkPageSelect.checkIfTicked());
+        frameworkPageSelect.toggleCompleteButton();
+        assertFalse(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffThenOnTodoKotlinReact() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Kotlin + React");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off, then on!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        assertTrue(frameworkPageSelect.checkIfTicked());
+        frameworkPageSelect.toggleCompleteButton();
+        assertFalse(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffThenOnTodoSpine() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Spine");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off, then on!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        assertTrue(frameworkPageSelect.checkIfTicked());
+        frameworkPageSelect.toggleCompleteButton();
+        assertFalse(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffThenOnTodoDart() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Dart");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off, then on!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        assertTrue(frameworkPageSelect.checkIfTicked());
+        frameworkPageSelect.toggleCompleteButton();
+        assertFalse(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffThenOnTodoClosure() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Closure");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off, then on!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        assertTrue(frameworkPageSelect.checkIfTicked());
+        frameworkPageSelect.toggleCompleteButton();
+        assertFalse(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffThenOnTodoElm() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Elm");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off, then on!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        assertTrue(frameworkPageSelect.checkIfTicked());
+        frameworkPageSelect.toggleCompleteButton();
+        assertFalse(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffThenOnTodoAngularDart() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("AngularDart");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off, then on!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        assertTrue(frameworkPageSelect.checkIfTicked());
+        frameworkPageSelect.toggleCompleteButton();
+        assertFalse(frameworkPageSelect.checkIfTicked());
+    }
+    @Test
+    public void tickOffThenOnTodoReagent() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Reagent");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("tick me off, then on!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        assertTrue(frameworkPageSelect.checkIfTicked());
+        frameworkPageSelect.toggleCompleteButton();
+        assertFalse(frameworkPageSelect.checkIfTicked());
+    }
+
+    //According to our test plan, we should here have the click and drag function for todo's
+    //However, this functionality not implemented yet
+    //Not going to write a test as will have no idea if it will work!
+
+
+
+    //These tests check if ToDo's can be deleted!
+    //Both complete, and incomplete
+
+    @Test
+    public void createAndDeleteTodoBackbone() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Backbone.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("delete me!");
+        frameworkPageSelect.enterInputTodo();
+
+        //check if the entry appears
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("delete me!");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+        //click the delete button
+        frameworkPageSelect.deleteTopEntry();
+
+        //check its disappeared
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+
+        //do the same with a completed ToDo
+
+        frameworkPageSelect.inputIntoToDoField("tick me off, then delete me!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        frameworkPageSelect.deleteTopEntry();
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+    }
+    @Test
+    public void createAndDeleteTodoKnockoutJS() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("KnockoutJS");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("delete me!");
+        frameworkPageSelect.enterInputTodo();
+
+        //check if the entry appears
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("delete me!");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+        //click the delete button
+        frameworkPageSelect.deleteTopEntry();
+
+        //check its disappeared
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+
+        //do the same with a completed ToDo
+
+        frameworkPageSelect.inputIntoToDoField("tick me off, then delete me!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        frameworkPageSelect.deleteTopEntry();
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+    }
+    @Test
+    public void createAndDeleteTodoDojo() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Dojo");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("delete me!");
+        frameworkPageSelect.enterInputTodo();
+
+        //check if the entry appears
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("delete me!");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+        //click the delete button
+        frameworkPageSelect.deleteTopEntry();
+
+        //check its disappeared
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+
+        //do the same with a completed ToDo
+
+        frameworkPageSelect.inputIntoToDoField("tick me off, then delete me!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        frameworkPageSelect.deleteTopEntry();
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+    }
+    @Test
+    public void createAndDeleteTodoKnockbackJS() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Knockback.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("delete me!");
+        frameworkPageSelect.enterInputTodo();
+
+        //check if the entry appears
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("delete me!");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+        //click the delete button
+        frameworkPageSelect.deleteTopEntry();
+
+        //check its disappeared
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+
+        //do the same with a completed ToDo
+
+        frameworkPageSelect.inputIntoToDoField("tick me off, then delete me!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        frameworkPageSelect.deleteTopEntry();
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+    }
+    @Test
+    public void createAndDeleteTodoCanJS() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("CanJS");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("delete me!");
+        frameworkPageSelect.enterInputTodo();
+
+        //check if the entry appears
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("delete me!");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+        //click the delete button
+        frameworkPageSelect.deleteTopEntry();
+
+        //check its disappeared
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+
+        //do the same with a completed ToDo
+
+        frameworkPageSelect.inputIntoToDoField("tick me off, then delete me!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        frameworkPageSelect.deleteTopEntry();
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+    }
+    @Test
+    public void createAndDeleteTodoMithril() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Mithril");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("delete me!");
+        frameworkPageSelect.enterInputTodo();
+
+        //check if the entry appears
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("delete me!");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+        //click the delete button
+        frameworkPageSelect.deleteTopEntry();
+
+        //check its disappeared
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+
+        //do the same with a completed ToDo
+
+        frameworkPageSelect.inputIntoToDoField("tick me off, then delete me!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        frameworkPageSelect.deleteTopEntry();
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+    }
+    @Test
+    public void createAndDeleteTodoVuejs() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Vue.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("delete me!");
+        frameworkPageSelect.enterInputTodo();
+
+        //check if the entry appears
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("delete me!");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+        //click the delete button
+        frameworkPageSelect.deleteTopEntry();
+
+        //check its disappeared
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+
+        //do the same with a completed ToDo
+
+        frameworkPageSelect.inputIntoToDoField("tick me off, then delete me!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        frameworkPageSelect.deleteTopEntry();
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+    }
+    @Test
+    public void createAndDeleteTodoMarionettejs() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Marionette.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("delete me!");
+        frameworkPageSelect.enterInputTodo();
+
+        //check if the entry appears
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("delete me!");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+        //click the delete button
+        frameworkPageSelect.deleteTopEntry();
+
+        //check its disappeared
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+
+        //do the same with a completed ToDo
+
+        frameworkPageSelect.inputIntoToDoField("tick me off, then delete me!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        frameworkPageSelect.deleteTopEntry();
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+    }
+    @Test
+    public void createAndDeleteTodoKotlinReact() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Kotlin + React");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("delete me!");
+        frameworkPageSelect.enterInputTodo();
+
+        //check if the entry appears
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("delete me!");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+        //click the delete button
+        frameworkPageSelect.deleteTopEntry();
+
+        //check its disappeared
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+
+        //do the same with a completed ToDo
+
+        frameworkPageSelect.inputIntoToDoField("tick me off, then delete me!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        frameworkPageSelect.deleteTopEntry();
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+    }
+    @Test
+    public void createAndDeleteTodoSpine() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Spine");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("delete me!");
+        frameworkPageSelect.enterInputTodo();
+
+        //check if the entry appears
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("delete me!");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+        //click the delete button
+        frameworkPageSelect.deleteTopEntry();
+
+        //check its disappeared
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+
+        //do the same with a completed ToDo
+
+        frameworkPageSelect.inputIntoToDoField("tick me off, then delete me!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        frameworkPageSelect.deleteTopEntry();
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+    }
+    @Test
+    public void createAndDeleteTodoDart() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Dart");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("delete me!");
+        frameworkPageSelect.enterInputTodo();
+
+        //check if the entry appears
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("delete me!");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+        //click the delete button
+        frameworkPageSelect.deleteTopEntry();
+
+        //check its disappeared
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+
+        //do the same with a completed ToDo
+
+        frameworkPageSelect.inputIntoToDoField("tick me off, then delete me!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        frameworkPageSelect.deleteTopEntry();
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+    }
+    @Test
+    public void createAndDeleteTodoClosure() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Closure");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("delete me!");
+        frameworkPageSelect.enterInputTodo();
+
+        //check if the entry appears
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("delete me!");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+        //click the delete button
+        frameworkPageSelect.deleteTopEntry();
+
+        //check its disappeared
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+
+        //do the same with a completed ToDo
+
+        frameworkPageSelect.inputIntoToDoField("tick me off, then delete me!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        frameworkPageSelect.deleteTopEntry();
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+    }
+    @Test
+    public void createAndDeleteTodoElm() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Elm");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("delete me!");
+        frameworkPageSelect.enterInputTodo();
+
+        //check if the entry appears
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("delete me!");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+        //click the delete button
+        frameworkPageSelect.deleteTopEntry();
+
+        //check its disappeared
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+
+        //do the same with a completed ToDo
+
+        frameworkPageSelect.inputIntoToDoField("tick me off, then delete me!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        frameworkPageSelect.deleteTopEntry();
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+    }
+    @Test
+    public void createAndDeleteTodoAngularDart() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("AngularDart");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("delete me!");
+        frameworkPageSelect.enterInputTodo();
+
+        //check if the entry appears
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("delete me!");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+        //click the delete button
+        frameworkPageSelect.deleteTopEntry();
+
+        //check its disappeared
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+
+        //do the same with a completed ToDo
+
+        frameworkPageSelect.inputIntoToDoField("tick me off, then delete me!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        frameworkPageSelect.deleteTopEntry();
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+    }
+    @Test
+    public void createAndDeleteTodoReagent() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Reagent");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("delete me!");
+        frameworkPageSelect.enterInputTodo();
+
+        //check if the entry appears
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("delete me!");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+        //click the delete button
+        frameworkPageSelect.deleteTopEntry();
+
+        //check its disappeared
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+
+        //do the same with a completed ToDo
+
+        frameworkPageSelect.inputIntoToDoField("tick me off, then delete me!");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.toggleCompleteButton();
+        frameworkPageSelect.deleteTopEntry();
+
+        assertFalse(frameworkPageSelect.getAllTodos().isEmpty());
+    }
+
+
+//This test checks the status bar displays correct number of todo's in the list
+
+    @Test
+    public void toDoCountBackbone() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Backbone.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("number 1");
+        frameworkPageSelect.enterInputTodo();
+
+        //get the count
+        frameworkPageSelect.getNumberStatusBar();
+    }
 
 
 
