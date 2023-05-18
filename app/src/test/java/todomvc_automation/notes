@@ -1,12 +1,14 @@
+ALL THESE FRAMEWORKS HAVE IDENTICAL FRONTEND - THEREFORE CAN BE EASILY AUTOMATED WITH A POM
+
 Backbone.js
 KnockoutJS
 Dojo
-Knockback.js
+Knockback.js - KnockbackJS
 CanJS
 Mithril
-Vue.js
-Marionette.js
-Kotlin + React
+Vue.js - Vuejs
+Marionette.js - Marionettejs
+Kotlin + React - KotlinReact
 Spine
 Dart
 Closure
@@ -14,6 +16,7 @@ Elm
 AngularDart
 Reagent
 
+THESE FRAMEWORKS HAVE NON-MATCHING FRONT - SO WILL BE NEEDED TO AUTOMATED SEPERATELY
 
 AngularJS - different page format
 Ember.js- different page format
@@ -21,19 +24,19 @@ Polymer - different page format
 React - different page format
 GWT- different page format
 
-accent
 
 
-        frameworkPageSelect.inputIntoToDoField("á");
-        frameworkPageSelect.enterInputTodo();
-        frameworkPageSelect.inputIntoToDoField("ú");
-        frameworkPageSelect.enterInputTodo();
-        frameworkPageSelect.inputIntoToDoField("ę");
-        frameworkPageSelect.enterInputTodo();
-        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
-        List<String> expectedTodos = Arrays.asList("á","ú","ę");
 
-        for (WebElement todo : allTodos) {
-            String thisOne = todo.getText();
-            assertTrue(expectedTodos.contains(thisOne));
-        }
+
+    public WebElement doubleClickTopEntryModify(String newText) {
+        WebElement toDoList = driver.findElement(By.className("todo-list"));
+        List<WebElement> allTodos = driver.findElements(By.className("view"));
+        WebElement topEntry = allTodos.get(0);
+        Actions act = new Actions(driver);
+        act.doubleClick(topEntry).perform();
+        driver.switchTo().activeElement().sendKeys(newText, Keys.ENTER);
+//        WebElement modifiedEntry = driver.findElement(By.className("edit"));
+//        modifiedEntry.sendKeys(newText);
+        return modifiedEntry;
+
+    }

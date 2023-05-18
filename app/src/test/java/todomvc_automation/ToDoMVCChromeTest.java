@@ -18,12 +18,12 @@ public class ToDoMVCChromeTest {
 
 
 
-    @BeforeAll
-    static void launchBrowser() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
-    }
+//    @BeforeAll
+//    static void launchBrowser() {
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--remote-allow-origins=*");
+//        driver = new ChromeDriver(options);
+//    }
 
     @BeforeEach
     public void launchBrowserSmall() {
@@ -593,6 +593,7 @@ public class ToDoMVCChromeTest {
 
     }
 
+    //Test for accented characters
 
     @Test
     public void accentCharactersBackbone() {
@@ -879,6 +880,485 @@ public class ToDoMVCChromeTest {
             assertTrue(expectedTodos.contains(thisOne));
         }
     }
+
+// Test for modifying existing entries
+
+    @Test
+    public void modifyEntryBackbone() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Backbone.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it
+        frameworkPageSelect.doubleClickTopEntryModify(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this, plus this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryKnockoutJS() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("KnockoutJS");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+        //modify it
+        frameworkPageSelect.doubleClickTopEntryModify(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this, plus this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryDojo() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Dojo");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it
+        frameworkPageSelect.doubleClickTopEntryModify(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this, plus this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryKnockbackJS() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Knockback.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it
+        frameworkPageSelect.doubleClickTopEntryModify(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this, plus this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryCanJS() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("CanJS");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it
+        frameworkPageSelect.doubleClickTopEntryModify(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this, plus this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryMithril() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Mithril");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it
+        frameworkPageSelect.doubleClickTopEntryModify(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this, plus this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryVuejs() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Vue.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it
+        frameworkPageSelect.doubleClickTopEntryModify(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this, plus this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+
+    //this test fails as the modify tool works slightly differently - feedback to devs? it places the cursor at the start
+    @Test
+    public void modifyEntryMarionettejs() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Marionette.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it
+
+        frameworkPageSelect.doubleClickTopEntryModify(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this, plus this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryKotlinReact() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Kotlin + React");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it
+        frameworkPageSelect.doubleClickTopEntryModify(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this, plus this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntrySpine() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Spine");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it
+        frameworkPageSelect.doubleClickTopEntryModify(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this, plus this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryDart() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Dart");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it
+        frameworkPageSelect.doubleClickTopEntryModify(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this, plus this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryClosure() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Closure");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it
+        frameworkPageSelect.doubleClickTopEntryModify(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this, plus this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryElm() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Elm");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it
+        frameworkPageSelect.doubleClickTopEntryModify(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this, plus this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryAngularDart() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("AngularDart");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it
+        frameworkPageSelect.doubleClickTopEntryModify(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this, plus this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+    @Test
+    public void modifyEntryReagent() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Reagent");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        //add a first todo
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        //assert it looks the same
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        //modify it
+        frameworkPageSelect.doubleClickTopEntryModify(", plus this");
+
+        //assert the new top entry
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this, plus this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+
+
+
+
+
+
+
+
+
 
 
     @AfterEach
