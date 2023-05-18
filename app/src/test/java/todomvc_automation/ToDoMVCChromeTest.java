@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ToDoMVCChromeTest {
 
     private static ChromeDriver driver;
+
 
 
     @BeforeEach
@@ -2687,7 +2690,7 @@ public class ToDoMVCChromeTest {
 //This test checks the status bar displays correct number of todo's in the list
 
     @Test
-    public void toDoCountBackbone() {
+    public void toDoCount123Backbone() {
         HomepagePOM homePageSelect = new HomepagePOM(driver);
         homePageSelect.navigateToFramework("Backbone.js");
         ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
@@ -2695,8 +2698,618 @@ public class ToDoMVCChromeTest {
         frameworkPageSelect.enterInputTodo();
 
         //get the count
-        frameworkPageSelect.getNumberStatusBar();
+        String statusNumber = frameworkPageSelect.getNumberStatusBar();
+        //assert is 1
+        assertEquals(statusNumber,"1 item left");
+
+        //add two more
+        frameworkPageSelect.inputIntoToDoField("number 2");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.inputIntoToDoField("number 3");
+        frameworkPageSelect.enterInputTodo();
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 3
+        assertEquals(statusNumber2,"3 items left");
+
     }
+    @Test
+    public void toDoCount123KnockoutJS() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("KnockoutJS");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("number 1");
+        frameworkPageSelect.enterInputTodo();
+
+        //get the count
+        String statusNumber = frameworkPageSelect.getNumberStatusBar();
+        //assert is 1
+        assertEquals(statusNumber,"1 item left");
+
+        //add two more
+        frameworkPageSelect.inputIntoToDoField("number 2");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.inputIntoToDoField("number 3");
+        frameworkPageSelect.enterInputTodo();
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 3
+        assertEquals(statusNumber2,"3 items left");
+
+    }
+    @Test
+    public void toDoCount123Dojo() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Dojo");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("number 1");
+        frameworkPageSelect.enterInputTodo();
+
+        //get the count
+        String statusNumber = frameworkPageSelect.getNumberStatusBar();
+        //assert is 1
+        assertEquals(statusNumber,"1 item left");
+
+        //add two more
+        frameworkPageSelect.inputIntoToDoField("number 2");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.inputIntoToDoField("number 3");
+        frameworkPageSelect.enterInputTodo();
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 3
+        assertEquals(statusNumber2,"3 items left");
+
+    }
+    @Test
+    public void toDoCount123Knockbackjs() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Knockback.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("number 1");
+        frameworkPageSelect.enterInputTodo();
+
+        //get the count
+        String statusNumber = frameworkPageSelect.getNumberStatusBar();
+        //assert is 1
+        assertEquals(statusNumber,"1 item left");
+
+        //add two more
+        frameworkPageSelect.inputIntoToDoField("number 2");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.inputIntoToDoField("number 3");
+        frameworkPageSelect.enterInputTodo();
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 3
+        assertEquals(statusNumber2,"3 items left");
+
+    }
+    @Test
+    public void toDoCount123CanJS() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("CanJS");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("number 1");
+        frameworkPageSelect.enterInputTodo();
+
+        //get the count
+        String statusNumber = frameworkPageSelect.getNumberStatusBar();
+        //assert is 1
+        assertEquals(statusNumber,"1 item left");
+
+        //add two more
+        frameworkPageSelect.inputIntoToDoField("number 2");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.inputIntoToDoField("number 3");
+        frameworkPageSelect.enterInputTodo();
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 3
+        assertEquals(statusNumber2,"3 items left");
+
+    }
+    @Test
+    public void toDoCount123Mithril() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Mithril");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("number 1");
+        frameworkPageSelect.enterInputTodo();
+
+        //get the count
+        String statusNumber = frameworkPageSelect.getNumberStatusBar();
+        //assert is 1
+        assertEquals(statusNumber,"1 item left");
+
+        //add two more
+        frameworkPageSelect.inputIntoToDoField("number 2");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.inputIntoToDoField("number 3");
+        frameworkPageSelect.enterInputTodo();
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 3
+        assertEquals(statusNumber2,"3 items left");
+
+    }
+    @Test
+    public void toDoCount123Vuejs() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Vue.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("number 1");
+        frameworkPageSelect.enterInputTodo();
+
+        //get the count
+        String statusNumber = frameworkPageSelect.getNumberStatusBar();
+        //assert is 1
+        assertEquals(statusNumber,"1 item left");
+
+        //add two more
+        frameworkPageSelect.inputIntoToDoField("number 2");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.inputIntoToDoField("number 3");
+        frameworkPageSelect.enterInputTodo();
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 3
+        assertEquals(statusNumber2,"3 items left");
+
+    }
+    @Test
+    public void toDoCount123Marionettejs() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Marionette.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("number 1");
+        frameworkPageSelect.enterInputTodo();
+
+        //get the count
+        String statusNumber = frameworkPageSelect.getNumberStatusBar();
+        //assert is 1
+        assertEquals(statusNumber,"1 item left");
+
+        //add two more
+        frameworkPageSelect.inputIntoToDoField("number 2");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.inputIntoToDoField("number 3");
+        frameworkPageSelect.enterInputTodo();
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 3
+        assertEquals(statusNumber2,"3 items left");
+
+    }
+    @Test
+    public void toDoCount123KotlinReact() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Kotlin + React");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("number 1");
+        frameworkPageSelect.enterInputTodo();
+
+        //get the count
+        String statusNumber = frameworkPageSelect.getNumberStatusBar();
+        //assert is 1
+        assertEquals(statusNumber,"1 item left");
+
+        //add two more
+        frameworkPageSelect.inputIntoToDoField("number 2");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.inputIntoToDoField("number 3");
+        frameworkPageSelect.enterInputTodo();
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 3
+        assertEquals(statusNumber2,"3 items left");
+
+    }
+    @Test
+    public void toDoCount123Spine() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Spine");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("number 1");
+        frameworkPageSelect.enterInputTodo();
+
+        //get the count
+        String statusNumber = frameworkPageSelect.getNumberStatusBar();
+        //assert is 1
+        assertEquals(statusNumber,"1 item left");
+
+        //add two more
+        frameworkPageSelect.inputIntoToDoField("number 2");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.inputIntoToDoField("number 3");
+        frameworkPageSelect.enterInputTodo();
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 3
+        assertEquals(statusNumber2,"3 items left");
+
+    }
+    @Test
+    public void toDoCount123Dart() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Dart");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("number 1");
+        frameworkPageSelect.enterInputTodo();
+
+        //get the count
+        String statusNumber = frameworkPageSelect.getNumberStatusBar();
+        //assert is 1
+        assertEquals(statusNumber,"1 item left");
+
+        //add two more
+        frameworkPageSelect.inputIntoToDoField("number 2");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.inputIntoToDoField("number 3");
+        frameworkPageSelect.enterInputTodo();
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 3
+        assertEquals(statusNumber2,"3 items left");
+
+    }
+    @Test
+    public void toDoCount123Closure() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Closure");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("number 1");
+        frameworkPageSelect.enterInputTodo();
+
+        //get the count
+        String statusNumber = frameworkPageSelect.getNumberStatusBar();
+        //assert is 1
+        assertEquals(statusNumber,"1 item left");
+
+        //add two more
+        frameworkPageSelect.inputIntoToDoField("number 2");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.inputIntoToDoField("number 3");
+        frameworkPageSelect.enterInputTodo();
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 3
+        assertEquals(statusNumber2,"3 items left");
+
+    }
+    @Test
+    public void toDoCount123Elm() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Elm");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("number 1");
+        frameworkPageSelect.enterInputTodo();
+
+        //get the count
+        String statusNumber = frameworkPageSelect.getNumberStatusBar();
+        //assert is 1
+        assertEquals(statusNumber,"1 item left");
+
+        //add two more
+        frameworkPageSelect.inputIntoToDoField("number 2");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.inputIntoToDoField("number 3");
+        frameworkPageSelect.enterInputTodo();
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 3
+        assertEquals(statusNumber2,"3 items left");
+
+    }
+    @Test
+    public void toDoCount123AngularDart() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("AngularDart");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("number 1");
+        frameworkPageSelect.enterInputTodo();
+
+        //get the count
+        String statusNumber = frameworkPageSelect.getNumberStatusBar();
+        //assert is 1
+        assertEquals(statusNumber,"1 item left");
+
+        //add two more
+        frameworkPageSelect.inputIntoToDoField("number 2");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.inputIntoToDoField("number 3");
+        frameworkPageSelect.enterInputTodo();
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 3
+        assertEquals(statusNumber2,"3 items left");
+
+    }
+    @Test
+    public void toDoCount123Reagent() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Reagent");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        frameworkPageSelect.inputIntoToDoField("number 1");
+        frameworkPageSelect.enterInputTodo();
+
+        //get the count
+        String statusNumber = frameworkPageSelect.getNumberStatusBar();
+        //assert is 1
+        assertEquals(statusNumber,"1 item left");
+
+        //add two more
+        frameworkPageSelect.inputIntoToDoField("number 2");
+        frameworkPageSelect.enterInputTodo();
+        frameworkPageSelect.inputIntoToDoField("number 3");
+        frameworkPageSelect.enterInputTodo();
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 3
+        assertEquals(statusNumber2,"3 items left");
+
+    }
+
+
+
+    //this test checks the upper limits of the amount of todos
+    @Disabled //too long to run in every pass
+    @Test
+    public void todoCount99Backbone() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Backbone.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        //add 100 todos
+        for (int i = 1; i <= 100; i++){
+            String s=String.valueOf(i);
+            frameworkPageSelect.inputIntoToDoField(s);
+            frameworkPageSelect.enterInputTodo();
+        }
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 100
+        assertEquals("100 items left",statusNumber2);
+    }
+    @Disabled //too long to run in every pass
+    @Test
+    public void todoCount99KnockoutJS() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("KnockoutJS");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        //add 100 todos
+        for (int i = 1; i <= 100; i++){
+            String s=String.valueOf(i);
+            frameworkPageSelect.inputIntoToDoField(s);
+            frameworkPageSelect.enterInputTodo();
+        }
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 100
+        assertEquals("100 items left",statusNumber2);
+    }
+    @Disabled //too long to run in every pass
+    @Test
+    public void todoCount99Dojo() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Dojo");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        //add 100 todos
+        for (int i = 1; i <= 100; i++){
+            String s=String.valueOf(i);
+            frameworkPageSelect.inputIntoToDoField(s);
+            frameworkPageSelect.enterInputTodo();
+        }
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 100
+        assertEquals("100 items left",statusNumber2);
+    }
+    @Disabled //too long to run in every pass
+    @Test
+    public void todoCount99Knockbackjs() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Knockback.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        //add 100 todos
+        for (int i = 1; i <= 100; i++){
+            String s=String.valueOf(i);
+            frameworkPageSelect.inputIntoToDoField(s);
+            frameworkPageSelect.enterInputTodo();
+        }
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 100
+        assertEquals("100 items left",statusNumber2);
+    }
+    @Disabled //too long to run in every pass
+    @Test
+    public void todoCount99CanJS() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("CanJS");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        //add 100 todos
+        for (int i = 1; i <= 100; i++){
+            String s=String.valueOf(i);
+            frameworkPageSelect.inputIntoToDoField(s);
+            frameworkPageSelect.enterInputTodo();
+        }
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 100
+        assertEquals("100 items left",statusNumber2);
+    }
+    @Disabled //too long to run in every pass
+    @Test
+    public void todoCount99Mithril() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Mithril");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        //add 100 todos
+        for (int i = 1; i <= 100; i++){
+            String s=String.valueOf(i);
+            frameworkPageSelect.inputIntoToDoField(s);
+            frameworkPageSelect.enterInputTodo();
+        }
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 100
+        assertEquals("100 items left",statusNumber2);
+    }
+    @Disabled //too long to run in every pass
+    @Test
+    public void todoCount99Vuejs() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Vue.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        //add 100 todos
+        for (int i = 1; i <= 100; i++){
+            String s=String.valueOf(i);
+            frameworkPageSelect.inputIntoToDoField(s);
+            frameworkPageSelect.enterInputTodo();
+        }
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 100
+        assertEquals("100 items left",statusNumber2);
+    }
+    @Disabled //too long to run in every pass
+    @Test
+    public void todoCount99Marionettejs() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Marionette.js");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        //add 100 todos
+        for (int i = 1; i <= 100; i++){
+            String s=String.valueOf(i);
+            frameworkPageSelect.inputIntoToDoField(s);
+            frameworkPageSelect.enterInputTodo();
+        }
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 100
+        assertEquals("100 items left",statusNumber2);
+    }
+    @Disabled //too long to run in every pass
+    @Test
+    public void todoCount99KotlinReact() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Kotlin + React");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        //add 100 todos
+        for (int i = 1; i <= 100; i++){
+            String s=String.valueOf(i);
+            frameworkPageSelect.inputIntoToDoField(s);
+            frameworkPageSelect.enterInputTodo();
+        }
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 100
+        assertEquals("100 items left",statusNumber2);
+    }
+    @Disabled //too long to run in every pass
+    @Test
+    public void todoCount99Spine() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Spine");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        //add 100 todos
+        for (int i = 1; i <= 100; i++){
+            String s=String.valueOf(i);
+            frameworkPageSelect.inputIntoToDoField(s);
+            frameworkPageSelect.enterInputTodo();
+        }
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 100
+        assertEquals("100 items left",statusNumber2);
+    }
+    @Disabled //too long to run in every pass
+    @Test
+    public void todoCount99Dart() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Dart");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        //add 100 todos
+        for (int i = 1; i <= 100; i++){
+            String s=String.valueOf(i);
+            frameworkPageSelect.inputIntoToDoField(s);
+            frameworkPageSelect.enterInputTodo();
+        }
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 100
+        assertEquals("100 items left",statusNumber2);
+    }
+    @Disabled //too long to run in every pass
+    @Test
+    public void todoCount99Closure() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Closure");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        //add 100 todos
+        for (int i = 1; i <= 100; i++){
+            String s=String.valueOf(i);
+            frameworkPageSelect.inputIntoToDoField(s);
+            frameworkPageSelect.enterInputTodo();
+        }
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 100
+        assertEquals("100 items left",statusNumber2);
+    }
+    @Disabled //too long to run in every pass
+    @Test
+    public void todoCount99Elm() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Elm");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        //add 100 todos
+        for (int i = 1; i <= 100; i++){
+            String s=String.valueOf(i);
+            frameworkPageSelect.inputIntoToDoField(s);
+            frameworkPageSelect.enterInputTodo();
+        }
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 100
+        assertEquals("100 items left",statusNumber2);
+    }
+    @Disabled //too long to run in every pass
+    @Test
+    public void todoCount99AngularDart() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("AngularDart");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        //add 100 todos
+        for (int i = 1; i <= 100; i++){
+            String s=String.valueOf(i);
+            frameworkPageSelect.inputIntoToDoField(s);
+            frameworkPageSelect.enterInputTodo();
+        }
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 100
+        assertEquals("100 items left",statusNumber2);
+    }
+    @Disabled //too long to run in every pass
+    @Test
+    public void todoCount99Reagent() {
+        HomepagePOM homePageSelect = new HomepagePOM(driver);
+        homePageSelect.navigateToFramework("Reagent");
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+        //add 100 todos
+        for (int i = 1; i <= 100; i++){
+            String s=String.valueOf(i);
+            frameworkPageSelect.inputIntoToDoField(s);
+            frameworkPageSelect.enterInputTodo();
+        }
+
+        String statusNumber2 = frameworkPageSelect.getNumberStatusBar();
+        //assert is 100
+        assertEquals("100 items left",statusNumber2);
+    }
+
+
 
 
 

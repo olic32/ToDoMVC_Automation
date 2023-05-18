@@ -3,12 +3,12 @@ ALL THESE FRAMEWORKS HAVE IDENTICAL FRONTEND - THEREFORE CAN BE EASILY AUTOMATED
 Backbone.js
 KnockoutJS
 Dojo
-Knockback.js - KnockbackJS
+Knockback.js
 CanJS
 Mithril
-Vue.js - Vuejs
-Marionette.js - Marionettejs
-Kotlin + React - KotlinReact
+Vue.js
+Marionette.js
+Kotlin + React
 Spine
 Dart
 Closure
@@ -24,5 +24,7 @@ Polymer - different page format
 React - different page format
 GWT- different page format
 
+/html/body/section/section/ul/li/div/label
 
-
+ - KotlinReact
+  - Marionettejs

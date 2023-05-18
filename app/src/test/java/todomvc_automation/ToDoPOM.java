@@ -2,6 +2,9 @@ package todomvc_automation;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +13,7 @@ import java.util.List;
 public class ToDoPOM {
 
     protected WebDriver driver;
+    private static WebDriverWait wait;
 
     public ToDoPOM(WebDriver driver) {
         this.driver = driver;
@@ -86,10 +90,13 @@ public class ToDoPOM {
     }
 
     public void deleteTopEntry() {
-        WebElement deleteButton = driver.findElement(By.className("destroy"));
+        WebElement entry = driver.findElement(By.className("todo-list"));
         Actions act = new Actions(driver);
-        act.moveToElement(deleteButton);
-        act.click();
+        act.moveToElement(entry);
+        WebElement deleteButton = driver.findElement(By.className("destroy"));
+        wait.until(ExpectedConditions.visibilityOf(deleteButton));
+        deleteButton.click();
+
     }
 
     public String getNumberStatusBar() {
