@@ -26,17 +26,3 @@ GWT- different page format
 
 
 
-
-
-    public WebElement doubleClickTopEntryModify(String newText) {
-        WebElement toDoList = driver.findElement(By.className("todo-list"));
-        List<WebElement> allTodos = driver.findElements(By.className("view"));
-        WebElement topEntry = allTodos.get(0);
-        Actions act = new Actions(driver);
-        act.doubleClick(topEntry).perform();
-        driver.switchTo().activeElement().sendKeys(newText, Keys.ENTER);
-//        WebElement modifiedEntry = driver.findElement(By.className("edit"));
-//        modifiedEntry.sendKeys(newText);
-        return modifiedEntry;
-
-    }
