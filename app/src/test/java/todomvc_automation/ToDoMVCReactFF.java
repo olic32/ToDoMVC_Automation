@@ -3,9 +3,9 @@ package todomvc_automation;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -13,25 +13,26 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.openqa.selenium.NoSuchElementException.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.openqa.selenium.By.xpath;
 
-public class StatusBarFF {
+public class ToDoMVCReactFF {
     private static FirefoxDriver driver;
     private static WebDriverWait wait;
 
-    @BeforeAll
-    public static void setUpDriver() {
-        driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    }
+
+
 
     @BeforeEach
-    public void setUpPage() {
+    public void launchBrowserSmall() {
+
+        driver = new FirefoxDriver();
         driver.get("https://todomvc.com/examples/react/#/");
+        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
     }
 
+
     public List<WebElement> getAllToDos() {
-        WebElement toDoList = driver.findElement(By.className("todo-list"));
         List<WebElement> allToDos = driver.findElements(By.className("view"));
         return allToDos;
     }
@@ -41,6 +42,103 @@ public class StatusBarFF {
         inputElement.sendKeys(itemName, Keys.ENTER);
     }
 
+    @Test
+    public void testGetAllToDos() {
+        List<WebElement> allToDos = getAllToDos();
+        List<String> expectedToDos = Arrays.asList("a", "ö", "á", "!", "?");
+        for (WebElement todo: allToDos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedToDos.contains(thisOne));
+        }
+    }
+
+    @Test
+    public void addToDoItem() {
+        WebElement inputElement = driver.findElement(By.cssSelector(".new-todo"));
+        inputElement.sendKeys("a", Keys.ENTER);
+    }
+
+    @Test
+    public void addToDoAccentedCharacter() {
+        WebElement inputElement = driver.findElement(By.cssSelector(".new-todo"));
+        inputElement.sendKeys("ö", Keys.ENTER);
+    }
+
+    @Test
+    public void addToDoAccentedCharacter2() {
+        WebElement inputElement = driver.findElement(By.cssSelector(".new-todo"));
+        inputElement.sendKeys("á", Keys.ENTER);
+    }
+
+    @Test
+    public void addToDoPunctuation() {
+        WebElement inputElement = driver.findElement(By.cssSelector(".new-todo"));
+        inputElement.sendKeys("!", Keys.ENTER);
+    }
+
+    @Test
+    public void addToDoPunctuation2() {
+        WebElement inputElement = driver.findElement(By.cssSelector(".new-todo"));
+        inputElement.sendKeys("?", Keys.ENTER);
+    }
+    @Test
+    public void toggleCheckbox() {
+        WebElement inputElement = driver.findElement(By.cssSelector(".new-todo"));
+        inputElement.sendKeys("Test to-do", Keys.ENTER);
+
+        WebElement todoItem = driver.findElement(By.xpath("//label[text()='Test to-do']"));
+        WebElement checkbox = todoItem.findElement(By.xpath("./preceding-sibling::input[@type='checkbox']"));
+
+        assertFalse(checkbox.isSelected(), "Checkbox should be unticked");
+        checkbox.click();
+        assertTrue(checkbox.isSelected(), "Checkbox should be ticked");
+        checkbox.click();
+        assertFalse(checkbox.isSelected(), "Checkbox should be unticked");
+    }
+
+    @Test
+    public void testCreateAndDeleteIncomplete() {
+        WebElement inputElement = driver.findElement(By.cssSelector(".new-todo"));
+        inputElement.sendKeys("Delete me", Keys.ENTER);
+        WebElement inputElement2 = driver.findElement(By.cssSelector(".new-todo"));
+        inputElement2.sendKeys("Keep me", Keys.ENTER);
+
+        WebElement todoItem = driver.findElement(xpath("//label[text()='Delete me']"));
+        WebElement checkbox = todoItem.findElement(xpath("./preceding-sibling::input[@type='checkbox']"));
+        checkbox.click();
+        checkbox.click();
+
+        WebElement deleteButton = todoItem.findElement(xpath("./following-sibling::button[@class='destroy']"));
+        deleteButton.click();
+
+        List<WebElement> remainingToDos = getAllToDos();
+        for (WebElement todo : remainingToDos) {
+            WebElement todoLabel = todo.findElement(xpath(".//label"));
+            String todoText = todoLabel.getText();
+            assertFalse(todoText.equals("Delete me"));
+        }
+    }
+
+    @Test
+    public void testCreateAndDeleteComplete() {
+        WebElement inputElement = driver.findElement(By.cssSelector(".new-todo"));
+        inputElement.sendKeys("Delete me!", Keys.ENTER);
+        WebElement inputElement2 = driver.findElement(By.cssSelector(".new-todo"));
+        inputElement2.sendKeys("I'm here to stay", Keys.ENTER);
+
+        WebElement todoItem = driver.findElement(xpath("//label[text()='Delete me!']"));
+        WebElement checkbox = todoItem.findElement(xpath("./preceding-sibling::input[@type='checkbox']"));
+        checkbox.click();
+
+        WebElement deleteButton = todoItem.findElement(xpath("./following-sibling::button[@class='destroy']"));
+        deleteButton.click();
+
+        List<WebElement> remainingToDos = getAllToDos();
+        for (WebElement todo : remainingToDos) {
+            WebElement todoLabel = todo.findElement(xpath(".//label"));
+            String todoText = todoLabel.getText();
+            assertFalse(todoText.equals("Delete me!"));}
+    }
     @Test
     public void testZeroAndOneItem() {
         createToDoItem("Item 1");
@@ -158,32 +256,15 @@ public class StatusBarFF {
         assertEquals("Item 2", remainingToDoText);
     }
 
-//      Work in progress...
-//    @Test
-//    public void testToggleAll() {
-//        createToDoItem("Item 1");
-//        createToDoItem("Item 2");
-//
-//        WebElement item1Checkbox = driver.findElement(By.xpath("//label[text()='Item 1']/preceding-sibling::input[@type='checkbox']"));
-//        WebElement item2Checkbox = driver.findElement(By.xpath("//label[text()='Item 2']/preceding-sibling::input[@type='checkbox']"));
-//
-//        item1Checkbox.click();
-//        item2Checkbox.click();
-//
-//        WebElement toggleButton = driver.findElement(By.cssSelector(".toggle-all"));
-//        toggleButton.click();
-//
-//        List<WebElement> todos = getAllToDos();
-//        assertTrue(todos.isEmpty());
-//
-//        toggleButton.click();
-//
-//        List<WebElement> activeToDos = getAllToDos();
-//        assertEquals(2, activeToDos.size());
-//    }
+    @AfterEach
+    public void closeBrowserBetween() {
+        driver.quit();
+    }
 
-//    @AfterAll
-//    public static void tearDown() {
-//        driver.quit();
-//    }
+    @AfterAll
+    static void closeBrowser() {
+        driver.quit();
+    }
+
+
 }
