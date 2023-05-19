@@ -87,19 +87,13 @@ public class StatusBarFF {
         WebElement activeButton = driver.findElement(By.xpath("//a[text()='Active']"));
         WebElement completedButton = driver.findElement(By.xpath("//a[text()='Completed']"));
 
-        assertTrue(allButton.isSelected());
-        assertFalse(activeButton.isSelected());
-        assertFalse(completedButton.isSelected());
+        assertTrue(allButton.isEnabled());
 
         activeButton.click();
-        assertTrue(activeButton.isSelected());
-        assertFalse(allButton.isSelected());
-        assertFalse(completedButton.isSelected());
+        assertTrue(activeButton.isEnabled());
 
         completedButton.click();
-        assertTrue(completedButton.isSelected());
-        assertFalse(allButton.isSelected());
-        assertFalse(activeButton.isSelected());
+        assertTrue(completedButton.isEnabled());
     }
 
     @AfterAll

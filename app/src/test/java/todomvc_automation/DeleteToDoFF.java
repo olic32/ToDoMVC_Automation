@@ -44,28 +44,45 @@ public class DeleteToDoFF {
     @Test
     public void testCreateAndDeleteIncomplete() {
         WebElement inputElement = driver.findElement(By.cssSelector(".new-todo"));
-        inputElement.sendKeys("Incomplete to-do", Keys.ENTER);
+        inputElement.sendKeys("Delete me", Keys.ENTER);
+        WebElement inputElement2 = driver.findElement(By.cssSelector(".new-todo"));
+        inputElement2.sendKeys("Keep me", Keys.ENTER);
 
-        WebElement todoItem = driver.findElement(xpath("//label[text()='Incomplete to-do']"));
+        WebElement todoItem = driver.findElement(xpath("//label[text()='Delete me']"));
+        WebElement checkbox = todoItem.findElement(xpath("./preceding-sibling::input[@type='checkbox']"));
+        checkbox.click();
+        checkbox.click();
+
         WebElement deleteButton = todoItem.findElement(xpath("./following-sibling::button[@class='destroy']"));
         deleteButton.click();
 
-        assertFalse(getAllToDos().isEmpty());
+        List<WebElement> remainingToDos = getAllToDos();
+        for (WebElement todo : remainingToDos) {
+            WebElement todoLabel = todo.findElement(xpath(".//label"));
+            String todoText = todoLabel.getText();
+            assertFalse(todoText.equals("Delete me"));
+        }
     }
 
     @Test
     public void testCreateAndDeleteComplete() {
         WebElement inputElement = driver.findElement(By.cssSelector(".new-todo"));
-        inputElement.sendKeys("Complete to-do", Keys.ENTER);
+        inputElement.sendKeys("Delete me!", Keys.ENTER);
+        WebElement inputElement2 = driver.findElement(By.cssSelector(".new-todo"));
+        inputElement2.sendKeys("I'm here to stay", Keys.ENTER);
 
-        WebElement todoItem = driver.findElement(xpath("//label[text()='Complete to-do']"));
+        WebElement todoItem = driver.findElement(xpath("//label[text()='Delete me!']"));
         WebElement checkbox = todoItem.findElement(xpath("./preceding-sibling::input[@type='checkbox']"));
         checkbox.click();
 
         WebElement deleteButton = todoItem.findElement(xpath("./following-sibling::button[@class='destroy']"));
         deleteButton.click();
 
-        assertFalse(getAllToDos().isEmpty());
+        List<WebElement> remainingToDos = getAllToDos();
+        for (WebElement todo : remainingToDos) {
+            WebElement todoLabel = todo.findElement(xpath(".//label"));
+            String todoText = todoLabel.getText();
+            assertFalse(todoText.equals("Delete me!"));}
     }
 
     @AfterAll
