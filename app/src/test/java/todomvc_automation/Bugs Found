@@ -1,0 +1,8 @@
+AngularDart Framework
+Bug - only number 3 is shown occasionally when 3 items in the todo list
+steps to reproduce -
+-navigate to angular dart framework
+-type in an entry and press enter (not click)
+repeat until 3 entries
+status bar says 3 - not 3 items left
+

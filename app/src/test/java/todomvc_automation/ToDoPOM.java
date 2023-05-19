@@ -8,12 +8,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
+
+import static org.openqa.selenium.By.xpath;
 
 public class ToDoPOM {
 
     protected WebDriver driver;
-    private static WebDriverWait wait;
 
     public ToDoPOM(WebDriver driver) {
         this.driver = driver;
@@ -90,18 +92,33 @@ public class ToDoPOM {
     }
 
     public void deleteTopEntry() {
-        WebElement entry = driver.findElement(By.className("todo-list"));
-        Actions act = new Actions(driver);
-        act.moveToElement(entry);
+        WebElement completeSwitch = driver.findElement(By.className("toggle"));
+        completeSwitch.click();
+        completeSwitch.click();
         WebElement deleteButton = driver.findElement(By.className("destroy"));
-        wait.until(ExpectedConditions.visibilityOf(deleteButton));
-        deleteButton.click();
 
+        deleteButton.click();
     }
 
     public String getNumberStatusBar() {
         WebElement todoCount = driver.findElement(By.className("todo-count"));
         return todoCount.getText();
+    }
+
+    public Boolean getStatusBarStatus() {
+        try{
+            WebElement statusBar = driver.findElement(By.className("filters"));
+            return (statusBar.isDisplayed());
+        }
+        catch(NoSuchElementException error) {
+            return false;
+        }
+
+    }
+
+    public void clearCompleted() {
+        WebElement clearCompletedButton = driver.findElement(By.className("clear-completed"));
+        clearCompletedButton.click();
     }
 
 
