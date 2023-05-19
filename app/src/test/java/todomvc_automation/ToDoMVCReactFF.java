@@ -81,6 +81,59 @@ public class ToDoMVCReactFF {
         WebElement inputElement = driver.findElement(By.cssSelector(".new-todo"));
         inputElement.sendKeys("?", Keys.ENTER);
     }
+
+    @Test
+    public void canModifyEntry() {
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        List<WebElement> allToDos = frameworkPageSelect.getAllTodos();
+        List<String> expectedToDos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allToDos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedToDos.contains(thisOne));
+        }
+
+        frameworkPageSelect.doubleClickTopEntryModify(", plus this");
+
+        List<WebElement> allToDosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedToDosModified = Arrays.asList("Looks like this, plus this");
+
+        for (WebElement todo : allToDosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedToDosModified.contains(thisOneMod));
+        }
+    }
+
+    @Test
+    public void modifyEntryEscape() {
+        ToDoPOM frameworkPageSelect = new ToDoPOM(driver);
+
+        frameworkPageSelect.inputIntoToDoField("Looks like this");
+        frameworkPageSelect.enterInputTodo();
+
+        List<WebElement> allTodos = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodos = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodos) {
+            String thisOne = todo.getText();
+            assertTrue(expectedTodos.contains(thisOne));
+        }
+
+        frameworkPageSelect.doubleClickTopEntryModifyEscape(", plus this");
+
+        List<WebElement> allTodosModified = frameworkPageSelect.getAllTodos();
+        List<String> expectedTodosModified = Arrays.asList("Looks like this");
+
+        for (WebElement todo : allTodosModified) {
+            String thisOneMod = todo.getText();
+            assertTrue(expectedTodosModified.contains(thisOneMod));
+        }
+    }
+
     @Test
     public void toggleCheckbox() {
         WebElement inputElement = driver.findElement(By.cssSelector(".new-todo"));
