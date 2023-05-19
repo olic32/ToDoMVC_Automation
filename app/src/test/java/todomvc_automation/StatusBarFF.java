@@ -75,8 +75,15 @@ public class StatusBarFF {
 
     @Test
     public void testNoItemsExist() {
-        WebElement statusBar = driver.findElement(By.cssSelector(".todo-count"));
-        assertFalse(statusBar.isDisplayed());
+        boolean isStatusBarDisplayed;
+        try{
+            WebElement statusBar = driver.findElement(By.cssSelector(".todo-count"));
+            isStatusBarDisplayed = statusBar.isDisplayed();
+        }
+        catch(NoSuchElementException error) {
+            isStatusBarDisplayed = false;
+        }
+        assertFalse(isStatusBarDisplayed);
     }
 
     @Test
@@ -96,8 +103,87 @@ public class StatusBarFF {
         assertTrue(completedButton.isEnabled());
     }
 
-    @AfterAll
-    public static void tearDown() {
-        driver.quit();
+    @Test
+    public void testLongToDo() {
+        StringBuilder longTextBuilder = new StringBuilder();
+        for (int i = 0; i <= 256; i++) {
+            longTextBuilder.append("£");
+        }
+        String longText = longTextBuilder.toString();
+        createToDoItem(longText);
+        List<WebElement> todos = getAllToDos();
+        assertEquals(1, todos.size());
+
+        WebElement todoLabel = todos.get(0).findElement(By.tagName("label"));
+        String todoText = todoLabel.getText();
+        assertEquals(longText, todoText);
     }
+
+    @Test
+    public void testClearCompletedLink() {
+        createToDoItem("Item 1");
+        createToDoItem("Item 2");
+
+        WebElement item1Checkbox = driver.findElement(By.xpath("//label[text()='Item 1']/preceding-sibling::input[@type='checkbox']"));
+        WebElement item2Checkbox = driver.findElement(By.xpath("//label[text()='Item 2']/preceding-sibling::input[@type='checkbox']"));
+
+        item1Checkbox.click();
+        item2Checkbox.click();
+
+        WebElement clearCompletedLink = driver.findElement(By.cssSelector(".clear-completed"));
+        assertTrue(clearCompletedLink.isDisplayed());
+    }
+
+    @Test
+    public void testClearCompleted() {
+        createToDoItem("Item 1");
+        createToDoItem("Item 2");
+        createToDoItem("Item 3");
+
+        WebElement item1Checkbox = driver.findElement(By.xpath("//label[text()='Item 1']/preceding-sibling::input[@type='checkbox']"));
+        WebElement item2Checkbox = driver.findElement(By.xpath("//label[text()='Item 2']/preceding-sibling::input[@type='checkbox']"));
+        WebElement item3Checkbox = driver.findElement(By.xpath("//label[text()='Item 3']/preceding-sibling::input[@type='checkbox']"));
+
+        item1Checkbox.click();
+        item3Checkbox.click();
+
+        WebElement clearCompleted = driver.findElement(By.cssSelector(".clear-completed"));
+        clearCompleted.click();
+
+        List<WebElement> remainingToDos = getAllToDos();
+        assertEquals(1, remainingToDos.size());
+
+        WebElement remainingToDoLabel = remainingToDos.get(0).findElement(By.tagName("label"));
+        String remainingToDoText = remainingToDoLabel.getText();
+        assertEquals("Item 2", remainingToDoText);
+    }
+
+//      Work in progress...
+//    @Test
+//    public void testToggleAll() {
+//        createToDoItem("Item 1");
+//        createToDoItem("Item 2");
+//
+//        WebElement item1Checkbox = driver.findElement(By.xpath("//label[text()='Item 1']/preceding-sibling::input[@type='checkbox']"));
+//        WebElement item2Checkbox = driver.findElement(By.xpath("//label[text()='Item 2']/preceding-sibling::input[@type='checkbox']"));
+//
+//        item1Checkbox.click();
+//        item2Checkbox.click();
+//
+//        WebElement toggleButton = driver.findElement(By.cssSelector(".toggle-all"));
+//        toggleButton.click();
+//
+//        List<WebElement> todos = getAllToDos();
+//        assertTrue(todos.isEmpty());
+//
+//        toggleButton.click();
+//
+//        List<WebElement> activeToDos = getAllToDos();
+//        assertEquals(2, activeToDos.size());
+//    }
+
+//    @AfterAll
+//    public static void tearDown() {
+//        driver.quit();
+//    }
 }
