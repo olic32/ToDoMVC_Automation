@@ -65,6 +65,10 @@ ___Frameworks covered___
 
 # Notes
  As mentioned below, some of the tests are not complete, certain tests have been disabled. mostly these are annotated to explain the issues. Additionally, we created a bug report file as a few bugs came up during testing, and these tests have also been disabled.
+ 
+ The test looking for a strikethrough uses a screenshot to take a picture of the strike. This has also been disabled.
+ 
+ There are a couple of tests that take a very long time to run - also disabled.
 
 
 # File structure
