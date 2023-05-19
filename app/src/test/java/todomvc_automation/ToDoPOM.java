@@ -116,6 +116,21 @@ public class ToDoPOM {
 
     }
 
+    public void toggleAllTodos() {
+        WebElement allToggle = driver.findElement(By.linkText("All"));
+        allToggle.click();
+    }
+    public void toggleActiveTodos() {
+        WebElement activeToggle = driver.findElement(By.linkText("Active"));
+        activeToggle.click();
+    }
+    public void toggleCompletedTodos() {
+        WebElement completeToggle = driver.findElement(By.linkText("Completed"));
+        completeToggle.click();
+    }
+
+
+
     public void clearCompleted() {
         WebElement clearCompletedButton = driver.findElement(By.className("clear-completed"));
         clearCompletedButton.click();
