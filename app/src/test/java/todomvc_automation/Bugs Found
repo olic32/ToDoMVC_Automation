@@ -6,3 +6,21 @@ steps to reproduce -
 repeat until 3 entries
 status bar says 3 - not 3 items left
 
+Angular Dart Framework
+Status bar functionality missing complete - no toggles, errors with items left
+
+Dojo
+Bug - when modifying an entry, cursor appears at start of text, not end
+
+Marionette
+Bug - when modifying an entry, cursor appears at start of text, not end
+
+Spine
+Bug - when modifying an entry, cursor appears at start of text, not end
+
+Reagent
+Bug - when modifying an entry, cursor appears at start of text, not end
+
+Knockback JS
+requires a double click then another click to modify
+
